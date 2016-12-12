@@ -1,24 +1,21 @@
-# README
+# Jarvis
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Jarvis is a supervised machine learning app built in Ruby on Rails. This app takes in a person's height and weight and then guesses if that person likes dogs or cats better.
 
-Things you may want to cover:
+For this app, I have used Support Vector Machine (SVM) machine learning algorithm.
 
-* Ruby version
+The game of prediction can be played at the root url. To visualize the classifier in SVM Supervised machine learning model and latest 5 accuracy metric graphs, check /admin/predictions.
 
-* System dependencies
+* Version - Ruby 2.3.3, Rails 5.0.0.1
+  
+* Required gems - rb-libsvm (Machine Learning Algorithm is Support Vector Machine), bootstrap, bootstrap-saas, chartkick, sucker_punch
 
-* Configuration
+* Database - sqlite3 
 
-* Database creation
+* App Server - Puma 
 
-* Database initialization
+* Database initialization - Initialize database with seed.rb to display graphs of classification data
 
-* How to run the test suite
+* Services - Application Job to re-train model in a seperate thread using gem sucker_punch. It runs in a seperate thread with a delay of 30 seconds from main thread. 
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Configuration - Training data and trained model is at /training_data.
