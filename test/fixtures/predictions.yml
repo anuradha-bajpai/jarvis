@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  height: 9.99
+  weight: 9.99
+  is_dog_person: 1
+  prediction: 1
+  metric_1: 
+
+two:
+  height: 9.99
+  weight: 9.99
+  is_dog_person: 1
+  prediction: 1
+  metric_1: 

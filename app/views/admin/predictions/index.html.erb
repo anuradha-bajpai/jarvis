@@ -1,0 +1,86 @@
+<div id="wrapper_admin"></div>
+<div></div>
+<div id="admin_main_content">
+  <h1 class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">Statistics</h1>
+
+  <div class="col-sm-8 col-sm-offset-2">
+    <div id="accuracy-chart" style="height: 400px; min-width: 310px; margin: 0 auto"></div>
+
+    <div id="chart-scatter-multi" style="height: 400px; min-width: 310px; margin: 100px auto"></div>
+  </div>
+
+
+    <script>
+        var dog_person = <%=raw @dog_person_json %>;
+        var cat_person = <%=raw @cat_person_json %>;
+        var accuracy = <%=raw @accuracy %>;
+        var scatterData = [{
+            name: 'Cat Person',
+            color: 'rgba(223, 83, 83, .5)',
+            data: cat_person
+        }, {
+            name: 'Dog Person',
+            color: 'rgba(119, 152, 191, .5)',
+            data: dog_person
+        }];
+        new Chartkick.ScatterChart("chart-scatter-multi", scatterData,
+            {xtitle: "Height (inch)", ytitle: "Weight (lbs)", legend: "bottom",
+                title: "Training Data", yAxis:true});
+
+        $('#accuracy-chart').highcharts({
+            chart: {
+                type: 'bubble'
+            },
+            xAxis: {
+                gridLineWidth: 1,
+                title: {
+                    text: 'Accuracy'
+                },
+                min: 0,
+                max: 100,
+                plotLines: [{
+                    color: 'black',
+                    dashStyle: 'dot',
+                    width: 2,
+                    value: 50,
+                    label: {
+                        rotation: 0,
+                        y: 15,
+                        style: {
+                            fontStyle: 'italic'
+                        },
+                        text: '50% accuracy'
+                    },
+                    zIndex: 3
+                }]
+            },
+
+            yAxis: {
+                startOnTick: false,
+                endOnTick: false,
+                title: {
+                    text: 'Change in Accuracy with retraining'
+                },
+                maxPadding: 0.2,
+                tickInterval: 1
+            },
+            tooltip: {
+                pointFormat: 'Accuracy: <b>{point.x}</b>'
+            },
+            title: {
+              text: 'Latest Five Accuracy'
+            },
+            series: [{
+                data: [
+                    { x: accuracy[0], y: 1, z: 10},
+                    { x: accuracy[1], y: 2, z: 10},
+                    { x: accuracy[2], y: 3, z: 10},
+                    { x: accuracy[3], y: 4, z: 10},
+                    { x: accuracy[4], y: 5, z: 10}
+
+                ]
+            }]
+        });
+    </script>
+</div>
+

@@ -1,0 +1,54 @@
+<div id="wrapper_result"></div>
+
+
+  <% if (@prediction.prediction == 1) %>
+      <h1 class="col-sm-12 col-md-5">You are A Dog Person!!!</h1>
+    <% else %>
+    <h1 class="col-sm-12 col-md-5">You are A Cat Person!!!</h1>
+    <% end %>
+
+<div class="clearfix"></div>
+
+<div class="collect_data">
+  <h2 class="col-sm-12 col-md-3 col-md-offset-1">Did we get you right?</h2>
+  <div class="clearfix"></div>
+
+  <% if (@prediction.prediction == 1) %>
+      <%= form_for @prediction,:html => {:class => "col-md-3 col-md-offset-1"}, :method => :PUT do |f| %>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-lg btn-default predict_right" data-toggle="collapse" data-target="#collapseExample">
+              <%= radio_button_tag(:is_dog_person, 1, false, :onclick => 'this.form.submit();') %>
+              <%= label_tag(:dog_person, "Yes") %>
+            </label>
+            <label class="btn btn-lg btn-default">
+              <%= radio_button_tag(:is_dog_person, 0, false, :onclick => 'this.form.submit();') %>
+              <%= label_tag(:cat_person, "No") %>
+            </label>
+          </div>
+      <% end %>
+  <% else %>
+      <%= form_for @prediction,:html => {:class => "col-md-3 col-md-offset-1"}, :method => :PUT do |f| %>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-lg btn-default  predict_right" data-toggle="collapse" data-target="#collapseExample">
+              <%= radio_button_tag(:is_dog_person, 0, false, :onclick => 'this.form.submit();') %>
+              <%= label_tag(:dog_person, "Yes") %>
+            </label>
+            <label class="btn btn-lg btn-default">
+              <%= radio_button_tag(:is_dog_person, 1, false, :onclick => 'this.form.submit();') %>
+              <%= label_tag(:cat_person, "No") %>
+            </label>
+          </div>
+      <% end %>
+  <% end %>
+
+</div>
+
+<div class="clearfix"></div>
+
+<div class="collapse col-md-3 col-md-offset-1" id="collapseExample">
+  <div class="card card-block">
+    <h2>Great!</h2>
+    <%= link_to 'Let\'s Play Again', new_prediction_path, class: "btn btn-lg btn-info " %>
+  </div>
+</div>
+

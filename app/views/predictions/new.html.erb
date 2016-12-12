@@ -1,0 +1,35 @@
+<div id="wrapper_welcome"></div>
+<div id="main_content">
+  <h1 class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">Can we guess if you are a Dog Person or a Cat Person</h1>
+
+  <h4 class="col-sm-8 col-sm-offset-2">Tell us your Height and Weight</h4>
+    <%= form_for :@prediction, :html => {:class => "form-inline col-sm-6 col-sm-offset-3 primary-form"}, url: predictions_path do |f| %>
+      <% if @prediction.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@prediction.errors.count, "error") %>:
+            </h2>
+            <ul>
+              <% @prediction.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="form-group col-sm-12 col-md-4 col-md-offset-1">
+          <%= f.label :height, class: "sr-only control-label" %>
+            <%= f.number_field :height, class: "form-control", placeholder: "Height(inch)", step: "any" %>
+      </div>
+      <div class="form-group col-sm-12 col-md-4">
+          <%= f.label :weight, class: "sr-only control-label" %>
+            <%= f.number_field :weight, class: "form-control", placeholder: "Weight(lbs)", step: "any"%>
+      </div>
+      <div class="col-md-2">
+        <%= f.submit "Submit", class: "btn btn-default " %>
+      </div>
+    <% end %>
+
+</div>
+
+

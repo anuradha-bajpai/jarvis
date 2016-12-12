@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess Pet</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style media="screen">
+    div#wrapper_result { background-image: url(<%=@image%>); }
+    div#wrapper_learning { background-image: url(<%=@image%>); }
+  </style>
+
+</head>
+
+<body>
+<%= javascript_include_tag "https://code.highcharts.com/highcharts.js" %>
+<%= javascript_include_tag "http://code.highcharts.com/highcharts-more.js" %>
+<%= javascript_include_tag "http://code.highcharts.com/modules/exporting.js" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<script type='text/javascript'>
+
+    $(document).ready(function() {
+        $('input[type=radio]').on('change', function () {
+            $(this).closest("form").submit();
+        });
+        $('.predict_right').on('click', function(){
+            $(this).closest(".collect_data").slideUp();
+        })
+        $('.collect_data').delay(1000).fadeIn(1500);
+    });
+
+</script>
+</body>
+</html>
